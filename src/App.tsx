@@ -18,6 +18,8 @@ function App() {
       {/* <button onClick={showValue}>Show Value</button> */}
       <button onClick={()=>setcount(count=>count+1)}>click me</button>
       <p>{count}</p>
+      <p>test1 added</p>
+      <p> test 1 added again</p>
     </div>
   );
 }
