@@ -17,6 +17,8 @@ const MainContent = () => {
       <Header />
       <Content />
       <Footer />
+      <p>test1 added</p>
+    
       <p> test2 added</p>
     </div>
   );
@@ -27,6 +29,7 @@ const App = () => {
     <ThemeProvider>
       <MainContent />
     </ThemeProvider>
+    
   );
 };
 
