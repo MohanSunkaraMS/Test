@@ -7,6 +7,7 @@ const Footer = () => {
   return (
     <footer>
       <p>Footer - Using {theme} theme</p>
+      <p> test2 added</p>
     </footer>
   );
 };

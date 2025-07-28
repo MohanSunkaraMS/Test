@@ -17,6 +17,7 @@ const MainContent = () => {
       <Header />
       <Content />
       <Footer />
+      <p> test2 added</p>
     </div>
   );
 };
