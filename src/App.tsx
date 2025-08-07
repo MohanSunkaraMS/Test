@@ -1,35 +1,55 @@
-import React from 'react';
-import { ThemeProvider, useTheme } from './ThemeContext';
-import Header from './Card';
-import Content from './CountContext';
-import Footer from './ThemedBox';
-
-// Separate component to use the theme (since hooks can't be used outside Provider)
-const MainContent = () => {
-  const { theme } = useTheme(); // light or dark or any value you define
-
-  // Define background color based on the theme
-  const backgroundColor = theme === 'dark' ? '#333' : '#f5f5f5';
-  const textColor = theme === 'dark' ? '#fff' : '#000';
-
-  return (
-    <div style={{ backgroundColor, color: textColor, minHeight: '100vh', padding: '20px' }}>
-      <Header />
-      <Content />
-      <Footer />
-      <p>test1 added</p>
-    
-      <p> test2 added</p>
-    </div>
-  );
-};
+import React, { useState, useEffect, useRef } from "react";
 
 const App = () => {
+  const [count, setCount] = useState(1);
+  const [imageUrl, setImageUrl] = useState("");
+  const [name, setName] = useState("");
+  const refElement = useRef(null);
+
+  const handleClick = () => {
+    if (refElement.current.innerText.toLowerCase() === "madhu") {
+      alert("changing name")
+      refElement.current.innerText = "Mohan";
+    } else {
+      refElement.current.innerText = "Madhu";
+    }
+  };
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("https://dog.ceo/api/breeds/image/random");
+        const data = await response.json();
+        setImageUrl(data.message); // Set image URL correctly
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    fetchUsers();
+  }, [count]);
+  console.log("mohan",count)
+
   return (
-    <ThemeProvider>
-      <MainContent />
-    </ThemeProvider>
-    
+    <div style={{ textAlign: "center", padding: "2rem" }}>
+      <h1 ref={refElement}>Mohan</h1>
+      <button onClick={handleClick}>Toggle Name</button>
+      <br /><br />
+      <input
+        value={name}
+        type="text"
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Enter name"
+        style={{ padding: "0.5rem", width: "200px" }}
+      />
+      <br /><br />
+      <button onClick={() => setCount(count + 1)}>Fetch New Dog Image</button>
+      <p>Count: {count}</p>
+      <p>Name: {name}</p>
+      {imageUrl && (
+        <img src={imageUrl} alt="Dog" style={{ width: "300px", borderRadius: "10px" }} />
+      )}
+    </div>
   );
 };
 
