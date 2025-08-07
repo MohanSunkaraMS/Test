@@ -9,6 +9,7 @@ const Footer = () => {
       <p>Footer - Using {theme} theme</p>
       <p> theme toggle added test1</p>
       <p> test2 added</p>
+      <p> added </p>
     </footer>
   );
 };
