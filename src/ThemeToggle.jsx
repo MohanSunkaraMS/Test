@@ -10,6 +10,7 @@ function ThemeToggle() {
         Current Mode: {theme} mode
       </button>
       <p className="">Mohan</p>
+      <p className="">Mohan</p>
 
     </>
   )
